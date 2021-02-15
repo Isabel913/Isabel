@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            background:#eee;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        
+        .banner-area{
+            width:100%;
+            height:100vh;
+            background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(back-img.jpg);
+            background-size:cover;
+        }        
+        
+        .content-area{
+            height:100%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+       .content{
+            text-align: center;
+        }
+        
+        .content h1{
+            font-size:80px;
+            color:#fff;
+        }
+        
+        .content p{
+            font-size:30px;
+            padding-top: 30px;
+            color:#ddd;
+        }
+        
+        .button{
+            border:none;
+            outline:none;
+            padding:15px;
+            align-items: right;
+            margin-top:40px;
+            border-radius: 4px;
+            color:#eee;
+            font-size: 15px;
+            cursor: pointer;    
+            background:#222;             
+        }
+        
+        /* main area */
+        
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            padding: 10px;
+        }
+
+        .container .box {
+            width: 100%;
+            padding: 50px;
+            background: #fff;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px -3px rgba(0, 0, 0, .1);
+        }
+
+        .h1{
+            text-align: center;
+            padding: 30px;
+        }
+                /* <header></header> */
+                header {
+             display: block;
+        }
+
+        .nav_header {
+            background-color:white;
+        }
+        .py-1 {
+            padding-top: 0rem!important;
+            padding-bottom: 0rem!important;
+        }
+        .name {
+            padding:30px;
+        }
+        .sticky-top {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+        }
+        .headercontainer {
+            width: 100%;
+            margin: 10px auto;
+            padding: 10px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+    </style>
+</head>
+<body>
+        <!-- <header></header> -->
+        <header class="sticky-top py-1 nav_header">
+            <nav class="headercontainer d-flex flex-column flex-md-row justify-content-between">
+              <a class="name d-none d-md-inline-block" href="index.html">Home</a>
+              <a class="name d-none d-md-inline-block" href="project1.html">Project 1</a>
+              <a class="name d-none d-md-inline-block" href="project2.html">Project 2</a>
+              <a class="name d-none d-md-inline-block" href="project3.html">Project 3</a>
+              <a class="name d-none d-md-inline-block" href="project4.html">Project 4</a>
+              <a class="name d-none d-md-inline-block" href="reading.html">Reading</a>
+            </nav>
+        </header>
+    <main>
+        <div class="banner-area">
+            <div class="content-area">
+               <div class="content">
+                  <h1>Project 2 - Control</h1>
+                  <p>Coming soon</p>
+               </div>
+            </div>
+        </div>
+        
+    </main>
+<footer></footer>
+
+</body>
+</html>
