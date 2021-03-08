@@ -89,7 +89,7 @@ void randomColor(){
   for(int i = 0; i < colArray.length; i++){
     colArray[i] = color(circleHue, circleSat, circleBrightness);
     circleSat = circleSat +20;
-    circleHue = circleHue +20;
-    circleBrightness = circleBrightness +20;
+    circleHue = circleHue +10;
+    circleBrightness = circleBrightness +10;
   }
 }
