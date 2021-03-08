@@ -150,6 +150,25 @@ body {
   line-height: 42px;
   color: #1e1e1e;
   letter-spacing: 0.25px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.left-heading .section-title2 {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 42px;
+  color: #727272;
+  letter-spacing: 0.25px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.left-heading .section-paragraph {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 42px;
+  color: #1e1e1e;
+  letter-spacing: 0.25px;
   margin-bottom: 30px;
   position: relative;
 }
