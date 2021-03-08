@@ -7,6 +7,7 @@ float rStep = 30;
 float rMax = 400;
 float circleHue = random(0,360);
 float circleSat = 100;
+float circleBrightness = 100;
 
 float background = 0;
 
@@ -86,7 +87,9 @@ void serialEvent(Serial conn) {
 
 void randomColor(){
   for(int i = 0; i < colArray.length; i++){
-    colArray[i] = color(circleHue, circleSat, 100);
-    circleSat = circleSat -20;
+    colArray[i] = color(circleHue, circleSat, circleBrightness);
+    circleSat = circleSat +20;
+    circleHue = circleHue +20;
+    circleBrightness = circleBrightness +20;
   }
 }
