@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Expression with P5js</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let baseURL = "https://api.particle.io/v1/devices/2b002f001847393035313137/";
+        let token = "?access_token=68a5406df063898fe27a2287d0e8c436dd6ce1ea";
+        let param1 = "motion";
+        //let param2 = "pot2";
+        let param3 = "sensor";
+        let data1URL = baseURL + param1 + token; //for potentiometer 1
+        //let data2URL = baseURL + param2 + token; //for potentiometer 2
+        let data3URL = baseURL + param3 + token; //for iR Sensor
+
+        //TIMERvars
+        let currentFactor, prevFactor;
+        let timeInterval = 1000;
+        let whichParam = 1;
+        let numberOfParams = 1;
+
+        //COLORvars:
+        let myHue = 0;
+        let mySat = 100;
+
+        //XandY
+        let x = 100;
+        let y = 100;
+
+ 
+        function setup(){
+            createCanvas(600, 600);
+            //colorMode (HSB, 360, 100, 100, 100);
+            background(196,238,252);
+            angleMode(DEGREES);
+            currentFactor = 0;
+            prevFactor = 0;
+
+            //colorMode(HSB, 360, 100, 100, 1);
+        }
+
+        function draw() {
+	
+            Rabbit (300, 300)
+            currentFactor = millis() % timeInterval;
+            if(currentFactor < prevFactor){
+                if(whichParam == 1){
+                    loadJSON(data1URL, dataHandle, errorHandle);
+                }
+                else{
+                    loadJSON(data3URL, dataHandle, errorHandle);
+                }
+                whichParam++;
+                if(whichParam == (numberOfParams+1)) whichParam = 1;
+            }
+
+            prevFactor = currentFactor;
+        
+         }
+        function Rabbit(X, Y){
+            fill(252, 215, 196);
+            push()
+                translate (X, Y);
+                rotate(30)
+                rect(-45, -29, 50, 30, 20);
+                rotate(160);
+                ellipse(38, 63, 9.5, 30); //ear
+            pop()
+            fill(252, 215, 196);
+            arc(X, Y, 20, 15, 180, 0, PIE);
+            fill(307, 30, 100);
+            ellipse (X-46, Y-40, 5, 5);
+            fill(252, 215, 196);
+            ellipse (X-35, Y-45, 25, 25);
+            rect(X-34, Y-28, 10, 30, 20);
+    }
+
+
+
+ 
+
+        function dataHandle(JSONdata){
+            console.log(JSONdata);
+                if(JSONdata.name ==="motion") {
+                    if(JSONdata.result ==="1") {
+                        console.log("Hello");
+                        background(366,100,100,100);
+                    }
+                    
+                    //     myHue = map(parseInt(JSONdata.result), 0, 4096, 0, 360);
+                }
+            // else if(JSONdata.name === "pot1"){
+            //     mySat = map(parseInt(JSONdata.result), 0, 4096, 0, 100);
+            // }
+        }
+
+        function errorHandle(ErrorData){
+            console.log("Error has occured: " + ErrorData);
+        }
+    </script>
+    
+</body>
+</html>
