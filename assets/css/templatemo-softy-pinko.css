@@ -410,6 +410,7 @@ header
   border-radius: 40px;
   min-height: 80px;
   background: #fff;
+  opacity: 50%;
 }
 
 .header-area .main-nav .logo {
