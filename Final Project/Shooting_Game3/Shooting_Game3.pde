@@ -11,7 +11,7 @@ float bulletX = 5;
 float bulletY = 0;
 
 float ellX = 0;
-float ellY = 350;
+float ellY = random (30,  400);
 
 boolean moveRight = true; //this is for birds starts moving right
 boolean moveUp = false; //this is for gun starts off not moving
@@ -42,16 +42,15 @@ void setup () {
   printArray(Serial.list());
   myConnection = new Serial(this, Serial.list()[1], 9600);
   myConnection.bufferUntil('\n');
+  frameRate(30);
 }
 
 void draw () {
 
   image(background, 0, 0);
   textFont (font);
-
-  //float bulletX = 8;
-  //float bulletY = 40;
-
+  
+  float ellX = map(pressure, 50, 4000, 0, 700);
   float rotationAngle = map(potentiometer, 0, 4096, 0, PI*1.5);
   println(rotationAngle);
   pushMatrix();
@@ -72,25 +71,10 @@ void draw () {
   if (button == 1)
   {  
     moveUp = true;
-  } else {
-    moveUp = false;
   }
+  
 
-  if (moveUp == true) {
-    bulletY = bulletY + 10;
-  }
 
-  if (bulletY <10) {
-    bulletY = 0;
-    moveUp = false;
-  }
-
-  if (bulletY < ellY + 50 && bulletY > ellY - 50 && bulletX < ellX + 50 && bulletX > ellX - 50) {
-    ellX = 0;
-    ellY = random (30, 400);
-    moveRight = true;
-    countY++;
-  }
 
   popMatrix();
 
@@ -102,13 +86,10 @@ void draw () {
 
 
   text ("Hunter", 450, 50);
-  text (countY, 570, 50); //score for user
+  text (countY, 570, 50); //score for hunter
 
   //bulletX = gunX +5;
   //image (arrow, bulletX, bulletY, 5, 50);
-
-
-
 
   if (moveRight == true) {
     ellX = ellX +4;
@@ -116,6 +97,7 @@ void draw () {
   if (ellX <= 650) {
     moveRight = true;
   }
+  
   if (ellX > 650) {
     ellX = 0;
     ellY = random (30, 400);
@@ -123,7 +105,28 @@ void draw () {
 
     countA++;
   }
+
+
+  if (moveUp == true) {
+    bulletY = bulletY + 20;
+  }
+
+  if (bulletY >700) {
+    bulletY = 0;
+    moveUp = false;
+  }
+
+  if (bulletY < ellY + 50 && bulletY > ellY - 50 && bulletX < ellX + 50 && bulletX > ellX - 50) {
+    ellX = 0;
+    ellY = 0;
+    moveRight = true;
+    ;
+  }
+
+
+
 }
+
 
 void serialEvent(Serial conn) {
   String fromSerial = conn.readString();
