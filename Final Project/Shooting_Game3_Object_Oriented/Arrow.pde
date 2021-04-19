@@ -6,7 +6,7 @@ class Arrow {
 
   Arrow() {
     posX = 350;
-    posY = 700;
+    posY = 600;
 
     moveUp = false;
   }
@@ -15,7 +15,7 @@ class Arrow {
   void display() {
 
     float rotationAngle = map(potentiometer, 0, 4096, PI*0.5, PI*1.5);
-    
+
     println(rotationAngle);
     pushMatrix();
     translate(350, 600);
@@ -23,24 +23,44 @@ class Arrow {
 
     fill (255); 
     rect (0, 0, 20, 100); //gun
-    fill (0);
-    rect (0, 0, 5, 50); //bullet
     
     popMatrix();
     
-  }
+    pushMatrix();
+    translate(posX, posY);
+    rotate(rotationAngle); 
 
-  void shoot() {
+    fill (0);
+    rect (0, 0, 5, 50); //bullet
+    
     if (button == 1)
     {  
       moveUp = true;
     }
+    
     if (moveUp == true) {
-      posY = posY - 10;
+      posY = posY - 20;
     }
+
+    popMatrix();
+  }
+
+  void shoot() {
+    
+    
     if (posY <10) {
-      posY = 650;
+      posY = 600;
       moveUp = false;
+      countA = countA+1;
+    }
+  }
+  
+  boolean checkHit(float pX, float pY){
+    if(dist(posX, posY, pX, pY) < 50 ){
+      return true;
+    }
+    else {
+      return false;
     }
   }
 }

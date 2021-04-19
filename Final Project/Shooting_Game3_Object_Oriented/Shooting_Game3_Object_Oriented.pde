@@ -8,12 +8,6 @@ float button = 0;
 float potentiometer = 0;
 float pressure = 0;
 
-//float gunX = 350;
-//float bulletX = 350;
-//float bulletY = 650;
-//float ellX = map(pressure, 50, 4000, 0, 700);
-//float ellY = random (30, 400);
-
 boolean moveRight = true; //this is for birds starts moving right
 boolean moveUp = false; //this is for gun starts off not moving
 
@@ -24,33 +18,31 @@ int countY = 0; //score for hunter
 
 PFont font;
 PImage background;
-PImage bird;
+
 PImage arrow;
 
-
-
-ArrayList<Bird> birds;
+Bird myBird;
 ArrayList<Arrow> arrows;
 
 
 void setup () {
-
   size (700, 700);
+  
   background = loadImage("bg.png");
-  bird = loadImage("bird.png");
+  
   arrow = loadImage("arrow.png");
   font = loadFont("Arial-BoldMT-24.vlw");
 
-  birds = new ArrayList<Bird>();
-  birds.add(new Bird());
+  myBird = new Bird();
 
   arrows = new ArrayList<Arrow>();
   arrows.add(new Arrow());
-  //frameRate (1);
+  
+  
   printArray(Serial.list());
   myConnection = new Serial(this, Serial.list()[1], 9600);
   myConnection.bufferUntil('\n');
-  //frameRate(20);
+
 }
 
 void draw () {
@@ -63,17 +55,19 @@ void draw () {
   text ("Hunter", 450, 50);
   text (countY, 570, 50); //score for hunter
 
+  myBird.posX = map(pressure, 50, 4000, 0, 700);
 
-
-  for (Bird b : birds) {
-    b.birdFly();
-    b.display();
-    b.hit();
-  }
+  myBird.birdFly();
+  myBird.display();
 
   for (Arrow a : arrows) {
     a.display();
     a.shoot();
+    if(a.checkHit(myBird.posX, myBird.posY) == true){
+      myBird.die();
+      countY= countY+1;
+      break;
+    }
   }
 }
 

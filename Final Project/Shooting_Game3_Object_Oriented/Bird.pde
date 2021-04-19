@@ -5,19 +5,19 @@ class Bird {
   boolean moveRight = true; //this is for birds starts moving right
   float radius;
 
-
+  PImage bird;
 
   Bird() {
-    //posX = 100;
+    posX = 100;
     posY = 100;
     moveRight = true;
     radius = 30;
+    
+    bird = loadImage("bird.png");
   }
 
   void display() {
     image(bird, posX, posY, 80, 50);
-    
-    
   }
 
   void birdFly() {
@@ -36,30 +36,9 @@ class Bird {
       //countA++;
     }
   }
-
-  void hit() {
-
-    for (Bird b : birds) {
-      if (b.radius > dist(mouseX, mouseY, b.posX, b.posY)) {
-        b.moveRight = false;
-        b.posX = b.posX+500;
-        //countY = countY + 1;
-        //countA = countA+0;
-        countY++;
-        countA= countA-1;
-        break;
-      }
-        //if (b.radius > dist(700, 0, b.posX, b.posY)) {
-        //  b.moveRight = false;
-        //  b.posX = b.posX+500;
-        //  //countY = countY + 1;
-        //  countA = countA+1;
-          
-        //  break;
-        //}
-      
-
-      
-    }
+  void die(){
+     moveRight = false;
+     posX = posX+500;
   }
+  
 }
